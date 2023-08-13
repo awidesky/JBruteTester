@@ -1,16 +1,20 @@
-package io.github.awidesky.bruteTester;
+package io.github.awidesky.bruteTester.forLoop;
 
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class IntBruteTester {
-	
+import io.github.awidesky.bruteTester.IntParameter;
+import io.github.awidesky.bruteTester.IntTuple;
+
+public class ForLoopIntBruteTester {
+
+
 	private final IntParameter[] params;
 	
 	/**
 	 * Creates new brute force tester that uses given <code>int</code> type parameter.
 	 * */
-	public IntBruteTester(IntParameter... param) { params = param; }
+	public ForLoopIntBruteTester(IntParameter... param) { params = param; }
 	
 	/**
 	 * Returns length of parameters of this tester.
@@ -24,17 +28,27 @@ public class IntBruteTester {
 	 * @param condition condition to test
 	 * @return <code>int</code> tuples that satisfies the condition.
 	 * */
-	public IntTuple[] bruteTest(Predicate<IntTuple> condition) {
+	public ForLoopIntTuple[] bruteTest(Predicate<ForLoopIntTuple> condition) {
+		params[0].generateStream().parallel().mapToObj(firstNum -> {
+			ForLoopIntTuple ret = new ForLoopIntTuple(params.length);
+			ret.add(firstNum);
+			for(int i = 1; i < params.length; i++) {
+				
+			}
+			return null;
+		});
+		
+		
+		
+		
+		
 		IntTuple firstTu = new IntTuple(params.length);
 		Stream<IntTuple> ret = params[0].generateStream().mapToObj(firstTu::add);
 		for (int i = 1; i < params.length; i++) {
 			final IntParameter p = params[i];
-			ret = ret.map(t -> {
-				System.out.println(t.toString());
-				return t.resetRank();
-			}).flatMap(tu -> p.generateStream().mapToObj(tu::add));
+			ret = ret.flatMap(tu -> p.generateStream().mapToObj(tu::add));
 		}
-		return ret.parallel().filter(condition).toArray(IntTuple[]::new);
+		//return ret.parallel().filter(condition).toArray(IntTuple[]::new);
+		return null;
 	}
-
 }

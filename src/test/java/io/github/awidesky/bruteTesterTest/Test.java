@@ -73,7 +73,6 @@ class Test {
 		IntBruteTester it = new IntBruteTester(new IntParameter(0,n), new IntParameter(0,n), new IntParameter(0,n), new IntParameter(0,n));
 		long i = Arrays.stream(it.bruteTest(t -> false)).count();
 		System.out.println(IntTuple.cnt.getAcquire());
-		assertEquals(i,
-				i);
+		assertEquals(0, i);
 	}
 }

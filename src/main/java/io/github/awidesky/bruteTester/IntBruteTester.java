@@ -29,10 +29,7 @@ public class IntBruteTester {
 		Stream<IntTuple> ret = params[0].generateStream().mapToObj(firstTu::add);
 		for (int i = 1; i < params.length; i++) {
 			final IntParameter p = params[i];
-			ret = ret.map(t -> {
-				System.out.println(t.toString());
-				return t.resetRank();
-			}).flatMap(tu -> p.generateStream().mapToObj(tu::add));
+			ret = ret.flatMap(tu -> p.generateStream().mapToObj(tu::add));
 		}
 		return ret.parallel().filter(condition).toArray(IntTuple[]::new);
 	}

@@ -31,12 +31,9 @@ public class IntBruteTester {
 		Stream<IntTuple> ret = params[0].generateStream().mapToObj(builder::build);
 		for (int i = 1; i < params.length; i++) {
 			final IntParameter p = params[i];
-			ret = ret.flatMap(root -> p.generateStream().mapToObj(ii -> { IntTuple t = root.add(ii); t.log("add"); return t;}));//.map(IntTuple::resetRank);
-			ret
-			//.toList().stream()
-			.peek(t -> { t.resetRank(); t.log("reset");})
-			.map(IntTuple::str)
-			.forEach(System.out::println);//TODO
+			final int index = i;
+			ret = ret.flatMap(root -> p.generateStream().mapToObj(num -> root.add(num, index)));//.map(IntTuple::resetRank);
+			
 		}
 		//ret.map(IntTuple::toString).forEach(System.out::println);//TODO
 		return ret.filter(condition).toArray(IntTuple[]::new);

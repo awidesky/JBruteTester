@@ -43,10 +43,11 @@ public class ForLoopIntBruteTester {
 		
 		
 		IntTuple firstTu = new IntTuple(params.length);
-		Stream<IntTuple> ret = params[0].generateStream().mapToObj(firstTu::add);
+		Stream<IntTuple> ret = params[0].generateStream().mapToObj(num -> firstTu.add(num, 0));
 		for (int i = 1; i < params.length; i++) {
 			final IntParameter p = params[i];
-			ret = ret.flatMap(tu -> p.generateStream().mapToObj(tu::add));
+			final int index = i;
+			ret = ret.flatMap(tu -> p.generateStream().mapToObj(num -> tu.add(num, index)));
 		}
 		//return ret.parallel().filter(condition).toArray(IntTuple[]::new);
 		return null;

@@ -1,7 +1,6 @@
 package io.github.awidesky.bruteTester;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 /**
@@ -9,8 +8,6 @@ import java.util.stream.Collectors;
  * */
 public class IntTuple {
 
-	public static AtomicLong cnt = new AtomicLong();
-	
 	private final int[] arr;
 	private int idx = 0; //index to put next data
 
@@ -23,14 +20,11 @@ public class IntTuple {
 	public IntTuple(int len) {
 		arr = new int[len];
 		Arrays.fill(arr, -1);
-		cnt.getAndIncrement();
-		//System.out.println(this.toString() + " idx : " + idx + "*");
 	}
 	private IntTuple(IntTuple other, int num, int index) {
 		arr = Arrays.copyOf(other.arr, other.arr.length);
 		idx = index + 1;
 		arr[index] = num;
-		cnt.getAndIncrement();
 	}
 	
 	/**

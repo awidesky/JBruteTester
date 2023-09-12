@@ -3,7 +3,6 @@ package io.github.awidesky.bruteTesterTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 import io.github.awidesky.bruteTester.IntBruteTester;
@@ -43,15 +42,4 @@ class IntTupleTest {
 				Arrays.stream(it.bruteTest(t -> t.get(0) - t.get(1) == 3)).map(IntTuple::toString).collect(Collectors.joining(" ")));
 	}
 
-
-	@org.junit.jupiter.api.Test
-	void cntTest() {
-		int n = 20;
-		IntTuple.cnt = new AtomicLong();
-		IntBruteTester it = new IntBruteTester(new IntParameter(0, n), new IntParameter(0, n), new IntParameter(0, n));
-		long i = Arrays.stream(it.bruteTest(t -> true)).count();
-		assertEquals((long)n * n * n, i);
-		assertEquals(i, IntTuple.cnt.getAcquire());
-		System.out.println(IntTuple.cnt.getAcquire());
-	}
 }

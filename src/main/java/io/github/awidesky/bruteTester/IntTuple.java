@@ -30,9 +30,7 @@ public class IntTuple {
 		arr = Arrays.copyOf(other.arr, other.arr.length);
 		idx = index + 1;
 		arr[index] = num;
-		//System.out.println("Before : " + other + "\tnow : " + this);//TODO
 		cnt.getAndIncrement();
-		//System.out.println(this.toString() + " idx : " + idx);//TODO
 	}
 	
 	/**
@@ -42,7 +40,6 @@ public class IntTuple {
 	 * */
 	public IntTuple add(int num, int index) {
 		if(arr.length < index) {
-			System.out.println("Tried to add " + num + " in : " + this.str());//TODO
 			throw new IllegalArgumentException("Parameters are " + arr.length + "-tuple(max index is " + (arr.length - 1) + "), but requested index was " + index);
 		}
 		if(index != idx) return new IntTuple(this, num, index);
@@ -62,39 +59,9 @@ public class IntTuple {
 		}
 		return arr[i];
 	}
-	
-	public static RootIntTupleBuilder builder(int len) {
-		return new RootIntTupleBuilder(len);
-	}
-	
-	String str() {
-		return toString() + ", idx=" + idx;
-	}
 
 	@Override
 	public String toString() {
 		return "[" + Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(", ")) + "]";
-	}
-
-	public String id() {
-		return "%010d".formatted(hashCode());
-	}
-	public void log(String s) {
-		System.out.println(id() + " " + s);
-	}
-	
-	public static class RootIntTupleBuilder {
-		private final int len;
-		
-		private RootIntTupleBuilder(int len) {
-			this.len = len;
-		}
-		
-		public IntTuple build(int firstNum) {
-			IntTuple ret = new IntTuple(len);
-			ret.arr[0] = firstNum;
-			ret.idx = 1;
-			return ret;
-		}
 	}
 }

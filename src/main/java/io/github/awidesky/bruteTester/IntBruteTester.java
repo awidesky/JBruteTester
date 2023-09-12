@@ -3,8 +3,6 @@ package io.github.awidesky.bruteTester;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import io.github.awidesky.bruteTester.IntTuple.RootIntTupleBuilder;
-
 public class IntBruteTester {
 	
 	private final IntParameter[] params;
@@ -27,15 +25,12 @@ public class IntBruteTester {
 	 * @return <code>int</code> tuples that satisfies the condition.
 	 * */
 	public IntTuple[] bruteTest(Predicate<IntTuple> condition) { //TODO : return stream
-		RootIntTupleBuilder builder = IntTuple.builder(params.length);
-		Stream<IntTuple> ret = params[0].generateStream().mapToObj(builder::build);
+		Stream<IntTuple> ret = params[0].generateStream().mapToObj(num -> new IntTuple(params.length).add(num, 0));
 		for (int i = 1; i < params.length; i++) {
 			final IntParameter p = params[i];
 			final int index = i;
 			ret = ret.flatMap(root -> p.generateStream().mapToObj(num -> root.add(num, index)));//.map(IntTuple::resetRank);
-			
 		}
-		//ret.map(IntTuple::toString).forEach(System.out::println);//TODO
 		return ret.filter(condition).toArray(IntTuple[]::new);
 	}
 

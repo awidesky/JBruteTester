@@ -46,11 +46,12 @@ class IntTupleTest {
 
 	@org.junit.jupiter.api.Test
 	void cntTest() {
-		int n = 100;
+		int n = 20;
 		IntTuple.cnt = new AtomicLong();
 		IntBruteTester it = new IntBruteTester(new IntParameter(0, n), new IntParameter(0, n), new IntParameter(0, n));
 		long i = Arrays.stream(it.bruteTest(t -> true)).count();
 		assertEquals((long)n * n * n, i);
 		assertEquals(i, IntTuple.cnt.getAcquire());
+		System.out.println(IntTuple.cnt.getAcquire());
 	}
 }

@@ -81,6 +81,13 @@ public class IntTuple {
 		return "[" + Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(", ")) + "]";
 	}
 
+	public String id() {
+		return "%010d".formatted(hashCode());
+	}
+	public void log(String s) {
+		System.out.println(id() + " " + s);
+	}
+	
 	public static class RootIntTupleBuilder {
 		private final int len;
 		

@@ -20,9 +20,10 @@ public class LongTuple {
 	public LongTuple(int len) {
 		arr = new long[len];
 	}
-	private LongTuple(LongTuple other) {
+	private LongTuple(LongTuple other, long num, int index) {
 		arr = Arrays.copyOf(other.arr, other.arr.length);
-		idx = other.idx;
+		idx = index + 1;
+		arr[index] = num;
 	}
 	
 	/**
@@ -30,13 +31,15 @@ public class LongTuple {
 	 * 
 	 * @throws IllegalArgumentException If the tuple is full before addition.
 	 * */
-	public LongTuple add(long num) {
-		if(arr.length <= idx) {
-			throw new IllegalArgumentException("Parameters are " + arr.length + "-tuple(max index is " + (arr.length - 1) + "), but requested index was " + idx);
+	public LongTuple add(long num, int index) {
+		if(arr.length < index) {
+			throw new IllegalArgumentException("Parameters are " + arr.length + "-tuple(max index is " + (arr.length - 1) + "), but requested index was " + index);
 		}
-		LongTuple ret = new LongTuple(this);
-		ret.addToArray(num);
-		return ret;
+		if(index != idx) return new LongTuple(this, num, index);
+		else {
+			arr[idx++] = num;
+			return this;
+		} 
 	}
 	/**
 	 * Get member of the tuple whose index is <code>i</code>.
@@ -55,5 +58,4 @@ public class LongTuple {
 		return "[" + Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(", ")) + "]";
 	}
 	
-	private void addToArray(long n) { arr[idx++] = n; }
 }

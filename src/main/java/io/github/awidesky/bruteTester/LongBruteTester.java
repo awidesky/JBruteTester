@@ -24,14 +24,14 @@ public class LongBruteTester {
 	 * @param condition condition to test
 	 * @return <code>long</code> type tuples that satisfies the condition.
 	 * */
-	public LongTuple[] bruteTest(Predicate<LongTuple> condition) {
-		LongTuple firstTu = new LongTuple(params.length);
-		Stream<LongTuple> ret = params[0].generateStream().mapToObj(firstTu::add);
+	public Stream<LongTuple> bruteTest(Predicate<LongTuple> condition) {
+		Stream<LongTuple> ret = params[0].generateStream().mapToObj(num -> new LongTuple(params.length).add(num, 0));
 		for (int i = 1; i < params.length; i++) {
 			final LongParameter p = params[i];
-			ret = ret.flatMap(tu -> p.generateStream().mapToObj(tu::add));
+			final int index = i;
+			ret = ret.flatMap(root -> p.generateStream().mapToObj(num -> root.add(num, index)));
 		}
-		return ret.parallel().filter(condition).toArray(LongTuple[]::new);
+		return ret.filter(condition);
 	}
 	
 }

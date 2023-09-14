@@ -1,10 +1,13 @@
-package io.github.awidesky.bruteTester;
+package io.github.awidesky.bruteTester.intTest;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import io.github.awidesky.bruteTester.Paramater;
 
 
-public class IntParameter {
+public class IntParameter implements Paramater<IntTuple> {
 
 	private final IntRange[] rangeArr;
 
@@ -27,8 +30,18 @@ public class IntParameter {
 	/**
 	 * Generate {@code IntStream} that has every possible numbers that this {@code IntParameter} can be.
 	 * */
-	public IntStream generateStream() {
+	private IntStream generateStream() {
 		return Arrays.stream(rangeArr).flatMapToInt(IntRange::generate);
+	}
+
+	@Override
+	public Stream<IntTuple> rootTuple(int length) {
+		return generateStream().mapToObj(num -> new IntTuple(length).add(num, 0));
+	}
+
+	@Override
+	public Stream<IntTuple> addTuple(IntTuple tuple, int index) {
+		return generateStream().mapToObj(num -> tuple.add(num, index));
 	}
 	
 	public static class IntRange {
@@ -51,4 +64,6 @@ public class IntParameter {
 			return IntStream.range(rangeStart, rangeBound);
 		}
 	}
+
+
 }

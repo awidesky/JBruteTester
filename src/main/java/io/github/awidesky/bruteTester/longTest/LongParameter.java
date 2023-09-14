@@ -1,9 +1,12 @@
-package io.github.awidesky.bruteTester;
+package io.github.awidesky.bruteTester.longTest;
 
 import java.util.Arrays;
 import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
-public class LongParameter {
+import io.github.awidesky.bruteTester.Paramater;
+
+public class LongParameter implements Paramater<LongTuple> {
 
 	private final LongRange[] rangeArr;
 
@@ -27,8 +30,18 @@ public class LongParameter {
 	/**
 	 * Generate {@code LongStream} that has every possible numbers that this {@code LongParameter} can be.
 	 * */
-	public LongStream generateStream() {
+	private LongStream generateStream() {
 		return Arrays.stream(rangeArr).flatMapToLong(LongRange::generate);
+	}
+
+	@Override
+	public Stream<LongTuple> rootTuple(int length) {
+		return generateStream().mapToObj(num -> new LongTuple(length).add(num, 0));
+	}
+
+	@Override
+	public Stream<LongTuple> addTuple(LongTuple tuple, int index) {
+		return generateStream().mapToObj(num -> tuple.add(num, index));
 	}
 	
 	public static class LongRange {
@@ -51,4 +64,5 @@ public class LongParameter {
 			return LongStream.range(rangeStart, rangeBound);
 		}
 	}
+
 }

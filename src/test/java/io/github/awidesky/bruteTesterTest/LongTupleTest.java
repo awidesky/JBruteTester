@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Collectors;
 
-import io.github.awidesky.bruteTester.LongBruteTester;
-import io.github.awidesky.bruteTester.LongParameter;
-import io.github.awidesky.bruteTester.LongParameter.LongRange;
-import io.github.awidesky.bruteTester.LongTuple;
+import io.github.awidesky.bruteTester.longTest.LongBruteTester;
+import io.github.awidesky.bruteTester.longTest.LongParameter;
+import io.github.awidesky.bruteTester.longTest.LongTuple;
+import io.github.awidesky.bruteTester.longTest.LongParameter.LongRange;
 
 class LongTupleTest {
 

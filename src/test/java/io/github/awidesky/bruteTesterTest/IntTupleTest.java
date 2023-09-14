@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Collectors;
 
-import io.github.awidesky.bruteTester.IntBruteTester;
-import io.github.awidesky.bruteTester.IntParameter;
-import io.github.awidesky.bruteTester.IntParameter.IntRange;
-import io.github.awidesky.bruteTester.IntTuple;
+import io.github.awidesky.bruteTester.intTest.IntBruteTester;
+import io.github.awidesky.bruteTester.intTest.IntParameter;
+import io.github.awidesky.bruteTester.intTest.IntTuple;
+import io.github.awidesky.bruteTester.intTest.IntParameter.IntRange;
 
 class IntTupleTest {
 

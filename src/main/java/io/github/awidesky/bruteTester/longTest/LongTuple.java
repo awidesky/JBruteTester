@@ -1,12 +1,14 @@
-package io.github.awidesky.bruteTester;
+package io.github.awidesky.bruteTester.longTest;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import io.github.awidesky.bruteTester.Tuple;
+
 /**
  * An n-tuple that holds a set of numbers in <code>long</code> type.
  * */
-public class LongTuple {
+public class LongTuple implements Tuple {
 
 	private final long[] arr;
 	private int idx = 0;

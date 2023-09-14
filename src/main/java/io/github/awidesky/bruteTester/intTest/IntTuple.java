@@ -1,12 +1,14 @@
-package io.github.awidesky.bruteTester;
+package io.github.awidesky.bruteTester.intTest;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import io.github.awidesky.bruteTester.Tuple;
+
 /**
  * An n-tuple that holds a set of numbers in <code>int</code> type.
  * */
-public class IntTuple {
+public class IntTuple implements Tuple {
 
 	private final int[] arr;
 	private int idx = 0; //index to put next data

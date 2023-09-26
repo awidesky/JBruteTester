@@ -7,6 +7,6 @@ public class IntBruteTester extends BruteTester<IntTuple> {
 	/**
 	 * Creates new brute force tester that uses given <code>int</code> type parameter.
 	 * */
-	public IntBruteTester(IntParameter... param) { params = param; }
+	public IntBruteTester(IntParameter... param) { super(param); }
 
 }

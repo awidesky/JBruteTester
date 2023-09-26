@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import io.github.awidesky.bruteTester.Tuple;
 
 /**
- * An n-tuple that holds a set of numbers in <code>int</code> type.
+ * An n-tuple that holds a set <code>int</code>.
  * */
 public class IntTuple implements Tuple {
 

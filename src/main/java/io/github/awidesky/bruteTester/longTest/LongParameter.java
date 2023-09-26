@@ -4,9 +4,15 @@ import java.util.Arrays;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import io.github.awidesky.bruteTester.Paramater;
+import io.github.awidesky.bruteTester.Parameter;
 
-public class LongParameter implements Paramater<LongTuple> {
+/**
+ * Denotes a parameter of a brute test whose type is {@code long}.
+ * 
+ * @see LongBruteTester
+ * @see LongTuple
+ */
+public class LongParameter implements Parameter<LongTuple> {
 
 	private final LongRange[] rangeArr;
 
@@ -36,14 +42,18 @@ public class LongParameter implements Paramater<LongTuple> {
 
 	@Override
 	public Stream<LongTuple> rootTuple(int length) {
-		return generateStream().mapToObj(num -> new LongTuple(length).add(num, 0));
+		return addTuple(new LongTuple(length), 0);
 	}
 
 	@Override
-	public Stream<LongTuple> addTuple(LongTuple tuple, int index) {
-		return generateStream().mapToObj(num -> tuple.add(num, index));
+	public Stream<LongTuple> addTuple(LongTuple root, int index) {
+		return generateStream().mapToObj(num -> root.add(num, index));
 	}
 	
+	/**
+	 * A a single range of {@code long} data(e.g. [-100, 100), [-9223372036854775805, 9223372036854775807), etc..)
+	 * <p>A {@code LongParameter} can have multiple {@code LongRange}, for example like y ∈ [0, 10) U (15, 20].
+	 */
 	public static class LongRange {
 		public final long rangeStart;
 		public final long rangeBound;

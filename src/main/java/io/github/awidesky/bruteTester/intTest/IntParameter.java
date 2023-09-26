@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import io.github.awidesky.bruteTester.Paramater;
+import io.github.awidesky.bruteTester.Parameter;
 
 
-public class IntParameter implements Paramater<IntTuple> {
+public class IntParameter implements Parameter<IntTuple> {
 
 	private final IntRange[] rangeArr;
 
@@ -21,7 +21,7 @@ public class IntParameter implements Paramater<IntTuple> {
 		rangeArr = new IntRange[] {new IntRange(rangeStart, rangeBound)};
 	}
 	/**
-	 * Create an <code>int</code>  type parameter that has specified ranges.
+	 * Create an <code>int</code> type parameter that has specified ranges.
 	 */
 	public IntParameter(IntRange... ranges) {
 		rangeArr = ranges;
@@ -36,14 +36,18 @@ public class IntParameter implements Paramater<IntTuple> {
 
 	@Override
 	public Stream<IntTuple> rootTuple(int length) {
-		return generateStream().mapToObj(num -> new IntTuple(length).add(num, 0));
+		return addTuple(new IntTuple(length), 0);
 	}
 
 	@Override
-	public Stream<IntTuple> addTuple(IntTuple tuple, int index) {
-		return generateStream().mapToObj(num -> tuple.add(num, index));
+	public Stream<IntTuple> addTuple(IntTuple root, int index) {
+		return generateStream().mapToObj(num -> root.add(num, index));
 	}
 	
+	/**
+	 * A a single range of {@code int} data(e.g. [-100, 100), [-2147483647 ~ 2147483647), etc..)
+	 * <p>A {@code IntParameter} can have multiple {@code IntRange}, for example like y ∈ [0, 10) U (15, 20].
+	 */
 	public static class IntRange {
 		public final int rangeStart;
 		public final int rangeBound;

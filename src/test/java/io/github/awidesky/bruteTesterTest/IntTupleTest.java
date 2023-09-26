@@ -27,13 +27,18 @@ class IntTupleTest {
 				+ "[4, 5] [4, 6] [4, 7] [4, 8]", 
 				it.bruteTest(t -> true).map(IntTuple::toString).collect(Collectors.joining(" ")));
 	}
+	/**
+	 * Find the set : {(x, y) | x = y, x ∈ [0, 10), y ∈ [0, 10)}
+	 */
 	@org.junit.jupiter.api.Test
 	void test1() {
 		IntBruteTester it = new IntBruteTester(new IntParameter(0, 10), new IntParameter(new IntRange(0,10)));
 		assertEquals("[0, 0] [1, 1] [2, 2] [3, 3] [4, 4] [5, 5] [6, 6] [7, 7] [8, 8] [9, 9]",
 				it.bruteTest(t -> t.get(0) == t.get(1)).map(IntTuple::toString).collect(Collectors.joining(" ")));
 	}
-
+	/**
+	 * Find the set : {(x, y) | x - y = 3, 0 <= x <= 9, 0 <= y <= 9}
+	 */
 	@org.junit.jupiter.api.Test
 	void test2() {
 		IntBruteTester it = new IntBruteTester(new IntParameter(0, 10), new IntParameter(new IntRange(0,10)));

@@ -41,7 +41,7 @@ public class LongParameter implements Parameter<LongTuple> {
 	}
 
 	@Override
-	public Stream<LongTuple> rootTuple(int length) {
+	public Stream<LongTuple> newTuple(int length) {
 		return addTuple(new LongTuple(length), 0);
 	}
 

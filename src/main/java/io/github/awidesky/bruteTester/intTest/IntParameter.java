@@ -35,7 +35,7 @@ public class IntParameter implements Parameter<IntTuple> {
 	}
 
 	@Override
-	public Stream<IntTuple> rootTuple(int length) {
+	public Stream<IntTuple> newTuple(int length) {
 		return addTuple(new IntTuple(length), 0);
 	}
 

@@ -39,7 +39,7 @@ public abstract class BruteTester<Tu extends Tuple> { //TODO : add enumBruteTest
 	 * @return <code>int</code> tuples that satisfies the condition.
 	 * */
 	public Stream<Tu> bruteTest(Predicate<Tu> condition) {
-		Stream<Tu> ret = params[0].rootTuple(params.length);
+		Stream<Tu> ret = params[0].newTuple(params.length);
 		for (int i = 1; i < params.length; i++) {
 			final Parameter<Tu> p = params[i];
 			final int index = i;

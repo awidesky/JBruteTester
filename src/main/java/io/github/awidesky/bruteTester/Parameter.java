@@ -31,7 +31,7 @@ public interface Parameter<T extends Tuple> {
 	 * @param length length of each tuple  
 	 * @return generated Stream of the tuples whose first element is one of all possible values of this parameter.
 	 */
-	public Stream<T> rootTuple(int length); //TODO : rename to newTuples
+	public Stream<T> newTuple(int length);
 	/**
 	 * Compute all possible values of this parameter, and derive stream of tuples from the given root.
 	 * <p>

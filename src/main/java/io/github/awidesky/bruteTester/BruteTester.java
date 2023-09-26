@@ -7,10 +7,10 @@ import java.util.stream.Stream;
  * A utility for a brute test that checks a list of parameters that each one has specific domain,
  * and find out all cases that satisfy a condition.
  * <p>
- * Followings are examples that can be solved via a subclass of {@code BruteTester} :<br>
+ * Followings are examples that can be solved via a subclass of {@code BruteTester} :<p>
  * <ul>
- * <li>Find all (x, y) that satisfies {@code x - y = 3} where 0 <= x <= 9, 0 <= y <= 9</li>
- * <li>Find all (x, y, z) that satisfies {@code x^2 + y^2 + z^2 = 1000} where -50 <= x <= 50, -50 <= y <= 50, -50 <= z <= 50</li>
+ * <li>Find all (x, y) that satisfies {@code x - y = 3} where 0 ≤ x ≤ 9, 0 ≤ y ≤ 9</li>
+ * <li>Find all (x, y, z) that satisfies {@code x^2 + y^2 + z^2 = 1000} where -50 ≤ x ≤ 50, -50 ≤ y ≤ 50, -50 ≤ z ≤ 50</li>
  * <li>Find all (x, y, z) that x is a prime number and {@code y^2 + z^2 = x} where x, y, z ∈ [0, 100000000000)</li>
  * <li>Find all ({@code myEnum1obj}, {@code myEnum2obj}) that satisfy {@code myEnum1obj.valueA() == myEnum2obj.valueB()}
  * where {@code myEnum1obj} is one of all possible value of an enum class {@code MyEnum1},

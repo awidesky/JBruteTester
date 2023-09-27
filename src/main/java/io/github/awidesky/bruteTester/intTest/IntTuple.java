@@ -55,7 +55,12 @@ public class IntTuple implements Tuple {
 		}
 		return arr[i];
 	}
-
+	
+	@Override
+	public int length() {
+		return arr.length;
+	}
+	
 	@Override
 	public String toString() {
 		return "[" + Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(", ")) + "]";

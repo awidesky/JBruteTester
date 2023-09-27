@@ -50,12 +50,21 @@ class IntTupleTest {
 	}
 	
 	/**
+	 * Test exceptions on {@code IntTuple}
+	 */
+	@org.junit.jupiter.api.Test
+	void tupleTest() {
+		IntTuple tu = new IntTuple(3);
+		assertEquals(tu.length(), 3);
+	}
+	
+	/**
 	 * Test exceptions on {@code IntTuple#add(long, int)}
 	 */
 	@org.junit.jupiter.api.Test
 	void exceptionAddTest() {
 		IntTuple tu = new IntTuple(3);
-		assertThrows(IllegalArgumentException.class, () -> tu.add(100, 3));
+		assertThrows(IllegalArgumentException.class, () -> tu.add(100, tu.length()));
 	}
 	/**
 	 * Test exceptions on {@code IntTuple#get(int)}
@@ -63,6 +72,6 @@ class IntTupleTest {
 	@org.junit.jupiter.api.Test
 	void exceptionGetTest() {
 		IntTuple tu = new IntTuple(3);
-		assertThrows(IllegalArgumentException.class, () -> tu.get(3));
+		assertThrows(IllegalArgumentException.class, () -> tu.get(tu.length()));
 	}
 }

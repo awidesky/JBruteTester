@@ -78,6 +78,11 @@ public class ObjectTuple<T> implements Tuple {
 		return arr[i];
 	}
 
+	@Override
+	public int length() {
+		return arr.length;
+	}
+	
 	/**
 	 * Returns a String represents of this tuple
 	 */

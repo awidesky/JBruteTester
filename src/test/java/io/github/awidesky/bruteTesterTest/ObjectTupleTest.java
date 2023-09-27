@@ -43,17 +43,26 @@ class ObjectTupleTest {
 	}
 	
 	/**
+	 * Test exceptions on {@code IntTuple}
+	 */
+	@org.junit.jupiter.api.Test
+	void tupleTest() {
+		ObjectTuple<String> tu = new ObjectTuple<String>(String.class, 3);
+		assertEquals(tu.length(), 3);
+	}
+	
+	/**
 	 * Test exceptions on {@code ObjectTuple#add(Object, int)}
 	 */
 	@org.junit.jupiter.api.Test
 	void exceptionAddTest() {
-		assertThrows(IllegalArgumentException.class, () -> tuple.add("Hello", 100)); //TODO : tuple.length()
+		assertThrows(IllegalArgumentException.class, () -> tuple.add("Hello", tuple.length())); //TODO : tuple.length()
 	}
 	/**
 	 * Test exceptions on {@code ObjectTuple#get(int)}
 	 */
 	@org.junit.jupiter.api.Test
 	void exceptionGetTest() {
-		assertThrows(IllegalArgumentException.class, () -> tuple.get(100));
+		assertThrows(IllegalArgumentException.class, () -> tuple.get(tuple.length()));
 	}
 }

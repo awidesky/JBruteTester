@@ -41,12 +41,21 @@ class LongTupleTest {
 	}
 	
 	/**
+	 * Test exceptions on {@code IntTuple}
+	 */
+	@org.junit.jupiter.api.Test
+	void tupleTest() {
+		LongTuple tu = new LongTuple(3);
+		assertEquals(tu.length(), 3);
+	}
+	
+	/**
 	 * Test exceptions on {@code LongTuple#add(long, int)}
 	 */
 	@org.junit.jupiter.api.Test
 	void exceptionAddTest() {
 		LongTuple tu = new LongTuple(3);
-		assertThrows(IllegalArgumentException.class, () -> tu.add(100L, 3));
+		assertThrows(IllegalArgumentException.class, () -> tu.add(100L, tu.length()));
 	}
 	/**
 	 * Test exceptions on {@code LongTuple#get(int)}
@@ -54,7 +63,7 @@ class LongTupleTest {
 	@org.junit.jupiter.api.Test
 	void exceptionGetTest() {
 		LongTuple tu = new LongTuple(3);
-		assertThrows(IllegalArgumentException.class, () -> tu.get(3));
+		assertThrows(IllegalArgumentException.class, () -> tu.get(tu.length()));
 	}
 
 }

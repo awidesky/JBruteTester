@@ -56,6 +56,11 @@ public class LongTuple implements Tuple {
 	}
 	
 	@Override
+	public int length() {
+		return arr.length;
+	}
+	
+	@Override
 	public String toString() {
 		return "[" + Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(", ")) + "]";
 	}

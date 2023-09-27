@@ -46,9 +46,6 @@ public class ObjectTuple<T> implements Tuple {
 	 * @throws IllegalArgumentException when the index is same of grater than the backing array's length
 	 */
 	protected ObjectTuple(ObjectTuple<T> other, T element, int index) {
-		if(other.arr.length <= index) {
-			throw new IllegalArgumentException("Cannot add element " + element.toString() + "in index "  + index + " : " + other.arr.length + "-tuple is full");
-		}
 		arr = Arrays.copyOf(other.arr, other.arr.length);
 		idx = index + 1;
 		arr[index] = element;
@@ -60,7 +57,7 @@ public class ObjectTuple<T> implements Tuple {
 	 * @throws IllegalArgumentException If the tuple is full before addition.
 	 * */
 	public ObjectTuple<T> add(T element, int index) {
-		if(arr.length < index) {
+		if(arr.length <= index) {
 			throw new IllegalArgumentException("Parameters are " + arr.length + "-tuple(max index is " + (arr.length - 1) + "), but requested index was " + index);
 		}
 		if(index != idx) return new ObjectTuple<T>(this, element, index);
@@ -86,7 +83,7 @@ public class ObjectTuple<T> implements Tuple {
 	 */
 	@Override
 	public String toString() {
-		return "[" + Arrays.stream(arr).map(T::toString).collect(Collectors.joining(", ")) + "]";
+		return "[" + Arrays.stream(arr).map(t -> t != null ? t.toString() : "null").collect(Collectors.joining(", ")) + "]";
 	}
 	
 }

@@ -34,7 +34,7 @@ public class LongTuple implements Tuple {
 	 * @throws IllegalArgumentException If the tuple is full before addition.
 	 * */
 	public LongTuple add(long num, int index) {
-		if(arr.length < index) {
+		if(arr.length <= index) {
 			throw new IllegalArgumentException("Parameters are " + arr.length + "-tuple(max index is " + (arr.length - 1) + "), but requested index was " + index);
 		}
 		if(index != idx) return new LongTuple(this, num, index);

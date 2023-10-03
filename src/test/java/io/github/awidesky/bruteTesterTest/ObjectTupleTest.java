@@ -56,7 +56,7 @@ class ObjectTupleTest {
 	 */
 	@org.junit.jupiter.api.Test
 	void exceptionAddTest() {
-		assertThrows(IllegalArgumentException.class, () -> tuple.add("Hello", tuple.length())); //TODO : tuple.length()
+		assertThrows(IllegalArgumentException.class, () -> tuple.add("Hello", tuple.length()));
 	}
 	/**
 	 * Test exceptions on {@code ObjectTuple#get(int)}
